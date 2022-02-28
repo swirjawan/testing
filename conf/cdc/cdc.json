@@ -1,0 +1,30 @@
+{
+	"sources": [	
+		{
+			"name": "TestSource",
+			"topic": "TestSourceTopic",
+			"messageSchema" : "String",
+			"transformScript" : "/opt/flink/conf/cdc/scripts/TestSource/TestSource.js",
+			"transformations": {
+					"table1": "/opt/flink/conf/cdc/scripts/TestSource/table1.js",
+					"table2": "/opt/flink/conf/cdc/scripts/TestSource/table2.js"
+			}
+		}
+	],
+
+    "targetTransformations": {
+            "Customer": "/opt/flink/conf/cdc/scripts/TestSource/Customer.js",
+			"Address": "/opt/flink/conf/cdc/scripts/TestSource/Address.js"
+	
+	},
+	
+	/*"scripts" :[
+			"/opt/flink/conf/cdc/scripts/md5.js",
+			"/opt/flink/conf/cdc/scripts/murmur3.js",
+			"/opt/flink/conf/cdc/scripts/enc-base64-min.js",
+			"/opt/flink/conf/cdc/scripts/utils.js"
+	],*/
+   
+   "targetDataSource":  "datalake"
+   
+}

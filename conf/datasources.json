@@ -1,0 +1,12 @@
+{
+  "datalake": {
+    "type": "couchbase",
+    "nodes": "VIDDRLXDCUVAP03.pru.intranet.asia;VIDDRLXDCUVAP06.pru.intranet.asia;",
+    "user": "SERVIDLIFEPMNPORTAL",
+    "pass": "Password10!",
+    "sslEnabled": false,
+    "params": {
+      "kvEndpoints": 4
+    }
+  }
+}

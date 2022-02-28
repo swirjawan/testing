@@ -1,0 +1,984 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "PMN Doc Interface Vertx Sinkjob",
+    "version": "1.0",
+    "title": "PMN Doc Interface Vertx Sinkjob",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "ris.it-consultant@prudential.co.id"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://doc-interface-vertx:8282"
+    }
+  ],
+  "tags": [
+    {
+      "name": "PMN Doc Interface Vertx Sinkjob",
+      "description": "PMN Doc Interface Vertx Sinkjob",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "paths": {
+    "/pmn/document": {
+      "post": {
+        "tags": [
+          "PMN Document API"
+        ],
+        "summary": "Generate Hospital Portal informed consent document",
+        "operationId": "pmnDocumentGenerate",
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "$ref": "#/components/schemas/PmnDocument"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "body": {
+                          "$ref": "#/components/schemas/PmnDocument"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PMN Document API"
+        ],
+        "summary": "Save generated Hospital Portal informed consent document",
+        "operationId": "pmnDocumentSave",
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "$ref": "#/components/schemas/PmnDocumentUpload"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "body": {
+                          "$ref": "#/components/schemas/PmnDocumentUpload"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pmn/document/download": {
+      "post": {
+        "tags": [
+          "PMN Document API"
+        ],
+        "summary": "Download Hospital Portal document",
+        "operationId": "pmnDocumentDownload",
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "uniqueId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pmn/event/generate": {
+      "post": {
+        "tags": [
+          "PMN Document API"
+        ],
+        "summary": "Generate Hospital Portal document",
+        "operationId": "pmnEventGenerated",
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "caseId": {
+                            "type": "string"
+                          },
+                          "admissionId": {
+                            "type": "string"
+                          },
+                          "priorApprovalNo": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "data": {
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pmn/document/event": {
+      "post": {
+        "tags": [
+          "PMN Document API"
+        ],
+        "summary": "Generate Hospital Portal document",
+        "operationId": "pmnDocumentEvent",
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "uniqueId": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "references": {
+                            "type": "object",
+                            "properties": {
+                              "caseId": {
+                                "type": "string"
+                              },
+                              "admissionId": {
+                                "type": "string"
+                              },
+                              "priorApprovalNo": {
+                                "type": "string"
+                              },
+                              "bpmId": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pmn/document/upload": {
+      "post": {
+        "tags": [
+          "PMN Document API"
+        ],
+        "summary": "Upload Document",
+        "operationId": "pmnUploadDocument",
+        "requestBody": {
+          "description": "Upload Document ",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "caseId": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "fileName": {
+                            "type": "string"
+                          },
+                          "extension": {
+                            "type": "string"
+                          },
+                          "file": {
+                            "type": "object",
+                            "properties": {
+                              "base64": {
+                                "type": "string"
+                              },
+                              "fileName": {
+                                "type": "string"
+                              },
+                              "extension": {
+                                "type": "string"
+                              },
+                              "size": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pmn/document/retrieve": {
+      "post": {
+        "tags": [
+          "PMN User API"
+        ],
+        "summary": "Upload Document",
+        "operationId": "pmnDownloadDocument",
+        "requestBody": {
+          "description": "Download Document in PMN Portal",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "caseId": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "unique": {
+                            "type": "string"
+                          },
+                          "lmlId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/pmn/document/flashMessage": {
+      "post": {
+        "tags": [
+          "PMN document Flash Message"
+        ],
+        "summary": "Create flash message general",
+        "operationId": "pmnFlashMessageGeneral",
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RequestHeader"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "body": {
+                        "type": "object",
+                        "properties": {
+                          "typeFlash": {
+                            "type": "string"
+                          },
+                          "documentId": {
+                            "type": "string"
+                          },
+                          "hospitalId": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseHeader"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "body": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/PmnCasePrebooking"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "ApiKeyHeader": {
+        "in": "header",
+        "name": "apiKey",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "API Key header"
+      },
+      "SignatureKeyHeader": {
+        "in": "header",
+        "name": "signatureKey",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Signature Key header"
+      },
+      "OperationKeyHeader": {
+        "in": "header",
+        "name": "operationKey",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Operation Key header"
+      },
+      "UniqueIdPath": {
+        "in": "path",
+        "name": "uid",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Unique Id path"
+      }
+    },
+    "schemas": {
+      "RequestHeader": {
+        "type": "object",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "operation": {
+                "type": "string"
+              },
+              "token": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string"
+              },
+              "locale": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "PmnCasePrebooking": {
+        "type": "object",
+        "properties": {
+          "caseId": {
+            "type": "string"
+          },
+          "admissionId": {
+            "type": "string"
+          },
+          "patientName": {
+            "type": "string"
+          },
+          "policyNo": {
+            "type": "string"
+          },
+          "prebookingDate": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "applyDate": {
+            "type": "string"
+          },
+          "expiredDate": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseHeader": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Header"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "$ref": "#/components/schemas/ResponseStatus"
+              },
+              "poll": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        ]
+      },
+      "Header": {
+        "type": "object",
+        "properties": {
+          "msgId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "ResponseStatus": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          },
+          "shortCode": {
+            "type": "string"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "DocumentGenerateRequest": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "DocumentGenerateResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string"
+          },
+          "uid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "uid"
+        ]
+      },
+      "DocumentRetrieveResponse": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string",
+            "description": "base64 of the file content"
+          }
+        },
+        "required": [
+          "uid"
+        ]
+      },
+      "DocumentInfoResponse": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string"
+          },
+          "cmId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "created": {
+            "type": "string",
+            "description": "RFC8601 date format"
+          }
+        }
+      },
+      "DocumentUploadRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "string",
+            "description": "base64 of the file content"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "info": {
+            "type": "object",
+            "description": "parameter 'filename' is mandatory and 'fileExtension' is optional",
+            "additionalProperties": true
+          },
+          "scanDate": {
+            "type": "string",
+            "description": "RFC8601 date format"
+          }
+        }
+      },
+      "DocumentUploadResponse": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string"
+          },
+          "cmId": {
+            "type": "string"
+          }
+        }
+      },
+      "PmnDocument": {
+        "type": "object",
+        "properties": {
+          "caseId": {
+            "type": "string"
+          },
+          "admissionId": {
+            "type": "string"
+          },
+          "priorApprovalNo": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "cons`ent",
+              "medical",
+              "guarantee",
+              "payment",
+              "stateid"
+            ]
+          },
+          "bpmId": {
+            "type": "string"
+          }
+        }
+      },
+      "PmnDocumentUpload": {
+        "type": "object",
+        "properties": {
+          "caseId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "cons`ent",
+              "medical",
+              "guarantee",
+              "payment",
+              "stateid"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "base64 filename"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "fileExtension": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+      }
+    }
+  }
+}

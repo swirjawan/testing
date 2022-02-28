@@ -1,0 +1,14 @@
+{
+  "appUser" : ["read:customers", "write:customers" , "search:customers", "delete:customers", "write:documents", "read:documents", "search:doctors", "write:doctors", "read:doctors", "write:users" , "read:users", "delete:users", "search:hospitals", "write:hospitals", "read:hospitals", "search:geolocations", "write:geolocations", "read:geolocations", "write:message", "read:chat","write:groups","read:groups", "delete:groups", "search:groups"],
+  
+  "partnerUser" :["write:doctor_external"],
+  
+  "readUser" : ["read:*", "search:*"],
+  
+  "writeUser" : ["write:*"],
+  
+  "deleteUser" : ["delete:*"],
+  
+  "adminUser" : ["read:*", "search:*", "write:*", "delete:*"]
+  
+} 
